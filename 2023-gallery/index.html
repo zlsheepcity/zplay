@@ -121,9 +121,34 @@
         }
     </style>
 
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ grid settings -->
+
+    <style>
+        :root {
+          --grid-gap--standart: 1.5em;
+          --grid-gap--smallgap: 2px;
+        }
+    @media all and (max-width:1080px) {
+        :root {
+          --grid-gap--standart: var(--grid-gap--smallgap);
+        }
+    }
+    </style>
+
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ gridTG11 -->
-    <article>
+    <article class="gridTGwrapper">
         <header> Grid Playground </header>
+        <style>
+            .gridTGwrapper {
+              --color--PaperText: hsl( 37, 55%, 85%);
+              --color--PaperBack: hsl(  0,  0%,  8%);
+                background-color: var(--color--PaperBack);
+                           color: var(--color--PaperText); 
+            }
+            .gridTGwrapper > header {
+                padding: 0 var(--grid-gap--smallgap);
+            }
+        </style>
         <div class="gridTG12">
             <img src="art/placeholderHQ11.jpg" alt="">
             <img src="art/placeholderHQ14.jpg" alt="">
@@ -132,7 +157,7 @@
             <style>
                 .gridTG12 {
                     display: grid;
-                    grid-gap: 1.5em;
+                    grid-gap: var(--grid-gap--standart);
                     grid-template-columns: repeat(4, 1fr);
                 }
             </style>
@@ -143,9 +168,9 @@
             <img src="art/placeholderHW11c.jpg" alt="">
             <style>
                 .gridTG11 {
-                    padding-top: 1.5em;
+                    padding-top: var(--grid-gap--standart);
                     display: grid;
-                    grid-gap: 1.5em;
+                    grid-gap: var(--grid-gap--standart);
                     grid-template-columns: repeat(3, 1fr);
                 }
             </style>
@@ -156,16 +181,28 @@
             <img src="art/placeholderHV11.jpg" alt="">
             <style>
                 .gridTG13 {
-                    padding-top: 1.5em;
+                    padding-top: var(--grid-gap--standart);
                     display: grid;
-                    grid-gap: 1.5em;
+                    grid-gap: var(--grid-gap--standart);
                     grid-template-columns: 1774fr 1080fr 657fr;
+                }
+            </style>
+        </div>
+        <div class="gridTG14">
+            <img src="art/placeholderHV15.jpg" alt="">
+            <img src="art/placeholderHW12c.jpg" alt="">
+            <style>
+                .gridTG14 {
+                    padding-top: var(--grid-gap--standart);
+                    display: grid;
+                    grid-gap: var(--grid-gap--standart);
+                    grid-template-columns: 657fr 1774fr;
                 }
             </style>
         </div>
     </article>
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ gridTG11 -->
-    <article>
+    <article class="gridTGwrapper">
         <header> Grid Playground </header>
         <div class="gridTG12">
             <img src="art/placeholderGQ31.jpg" alt="">
@@ -182,6 +219,10 @@
             <img src="art/placeholderGW10a.jpg" alt="">
             <img src="art/placeholderGQ11b.jpg" alt="">
             <img src="art/placeholderGV11a.jpg" alt="">
+        </div>
+        <div class="gridTG14">
+            <img src="art/placeholderGV11b.jpg" alt="">
+            <img src="art/placeholderGW10.jpg" alt="">
         </div>
     </article>
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ END -->
