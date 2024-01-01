@@ -226,6 +226,102 @@
             <img src="art/placeholderGW10.jpg" alt="">
         </div>
     </article>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Gallery snippets -->
+    <style>
+            summary.summaryHeader { /* config */
+              --font-size:   var(--h2-font-size,    3em);
+              --line-height: var(--h2-line-height, 1.25);
+              --marker-color:   currentColor;
+              --border-style-default: dotted;
+              --border-style-open:    dotted;
+              --border-style-hover:   dotted;
+            }
+
+            details { padding-top: 1em; }
+            details[open] {
+              --color-NobleBlack:  hsl(226, 15%, 12%);
+              --color-NobleWhite:  hsl(226, 27%, 90%);
+                background-color: var(--color-NobleBlack);
+                           color: var(--color-NobleWhite);
+            }
+    </style>
+    <details open>
+        <summary class="summaryHeader">Gallery snippets</summary>
+        <article class="gridGalleryG21">
+            <style display-source>
+                /*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ rows */
+                .gridGalleryG21,
+                .gridGalleryG21 .gridrow {
+                    display: grid;
+                    grid-gap: var(--grid-gap--standart);
+                    grid-template-columns: var(--grid-template-columns);
+                  --grid-template-columns: 1fr;
+                    }
+                .gridGalleryG21 .gridrow.X    {--grid-template-columns: repeat(1, 1fr);}
+                .gridGalleryG21 .gridrow.XX   {--grid-template-columns: repeat(2, 1fr);}
+                .gridGalleryG21 .gridrow.XXX  {--grid-template-columns: repeat(3, 1fr);}
+                .gridGalleryG21 .gridrow.XXXX {--grid-template-columns: repeat(4, 1fr);}
+            </style>
+            <style display-source>
+                <article class="gridGalleryG21">
+                    <figure class="gridrow XXX">
+                        <img src="art/placeholderGQ.jpg" alt="">
+                        <img src="art/placeholderGQ.jpg" alt="">
+                        <img src="art/placeholderGQ.jpg" alt="">
+                    </figure>
+                    <figure class="gridrow XX">
+                        <img src="art/placeholderGQ.jpg" alt="">
+                        <img src="art/placeholderGQ.jpg" alt="">
+                    </figure>
+                </article>
+            </style>
+            <figure class="gridrow XXX">
+                <a name="a"></a>
+                <img src="art/placeholderGW21b.jpg" alt="">
+                <img src="art/placeholderGW21.jpg" alt="">
+                <img src="art/placeholderGW21c.jpg" alt="">
+            </figure>
+            <figure class="gridrow XX">
+                <img src="art/placeholderGQ33.jpg" alt="">
+                <img src="art/placeholderGQ42c.jpg" alt="">
+            </figure>
+
+            <figure class="gridrow XX scrollSticky">
+                <a name="scrollSticky"></a>
+                <style display-source>
+                    /*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ scrollSticky */
+                    .gridGalleryG21 { position: relative; }
+                    .gridGalleryG21 .scrollSticky {
+                        position: sticky;
+                        top: 0;
+                        }
+                </style>
+                <img src="art/placeholderGQ11b.jpg" alt="">
+            </figure>
+            <figure class="gridrow XX">
+                <section class="gridrow X">
+                    <img src="art/placeholderGQ33.jpg" alt="">
+                    <img src="art/placeholderGQ42c.jpg" alt="">
+                    <img src="art/placeholderGW21b.jpg" alt="">
+                    <img src="art/placeholderGW21.jpg" alt="">
+                    <img src="art/placeholderGW21c.jpg" alt="">
+                </section>
+            </figure>
+            <figure class="gridrow X scrollSticky">
+                <img src="art/placeholderGW10b.jpg" alt="">
+            </figure>
+
+            <section style="height:100vh"></section>
+            <style display-source>
+                /*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ plugins */
+                /* <a name="scrollAnchor"></a> */
+                .gridGalleryG21 .gridrow >a[name] { position: absolute; }
+            </style>
+            <figure class="gridrow X">
+                <img src="art/placeholderGW10b.jpg" alt="">
+            </figure>
+        </article>
+    </details>
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ END -->
 </body>
 </html>
