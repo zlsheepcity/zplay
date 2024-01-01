@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- seed 2023.6.7 nutri-pop -->
+
+    <title>Grid Playground</title>
+    <meta name="description" content="template">
+    <meta name="author"      content="zl">
+
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ MICRODATA -->
+    <meta property="og:url"          content="">
+    <meta property="og:image"        content="">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="628">
+    <meta property="og:type"         content="article">
+    <meta property="og:locale"       content="en_US">
+
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ FAVICON -->
+    <meta name="theme-color"             content="#314159">
+    <meta name="msapplication-TileColor" content="#314159">
+    <meta name="msapplication-TileImage" content="app/icon512.png">
+    <link rel="icon" type="image/png"       href="app/icon512.png">
+    <link rel="apple-touch-icon"            href="app/icon512.png">
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ༼°▽°༽ ~ BOOT SERVICE -->
+    <style>
+        html    { margin:0; padding:0  0.25rem; }
+        body    { margin:0; padding:0; height:auto; width:100%; }
+        img,svg { margin:0; border: 0; max-width:100%; display:block; }
+        body    { overflow-y:scroll; }
+    </style>
+
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ GOOGLE FONTS 2023 -->
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link
+        media="none" onload="if(media!='all')media='all'"
+        href="https://fonts.googleapis.com/css?family=Vollkorn:400,400i,700&subset=cyrillic"
+        rel="stylesheet">
+    <link
+        media="none" onload="if(media!='all')media='all'"
+        href="https://fonts.googleapis.com/css?family=VT323"
+        rel="stylesheet">
+    <!-- / -->
+    <noscript>
+    <link
+        media="all"
+        href="https://fonts.googleapis.com/css?family=Vollkorn:400,400i,700&subset=cyrillic"
+        rel="stylesheet">
+    <link
+        media="all"
+        href="https://fonts.googleapis.com/css?family=VT323"
+        rel="stylesheet">
+    </noscript>
+    <!-- / -->
+    <style>
+        body {
+            font-family: var(--font-family, sans-serif);
+          --font-family: var(--font-family-tufte-serif);
+          --font-family-tufte-serif:
+                Vollkorn, et-book, Palatino,
+               "Palatino Linotype","Palatino LT STD","Book Antiqua",
+                Georgia, serif,
+               "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        }
+    </style>
+    <!-- /// -->
+
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ appart 2023 -->
+    <link
+        href="https://zlsheepcity.github.io/zlib/app/css.11xBase.css"
+        type="text/css" rel="stylesheet" media="all">
+    <link
+        href="https://zlsheepcity.github.io/zlib/app/css.12xMarkup.css"
+        type="text/css" rel="stylesheet" media="all">
+    <link
+        href="https://zlsheepcity.github.io/zlib/app/css.13xTypography.css"
+        type="text/css" rel="stylesheet" media="all">
+    <link
+        href="https://zlsheepcity.github.io/zlib/app/css.14xColors.css"
+        type="text/css" rel="stylesheet" media="all">
+    <link
+        href="https://zlsheepcity.github.io/zlib/app/css.15xLayouts.css"
+        type="text/css" rel="stylesheet" media="all">
+    <link
+        href="https://zlsheepcity.github.io/zlib/app/css.16xTools.css"
+        type="text/css" rel="stylesheet" media="all">
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ DESIGN -->
+
+    <style>
+        [mock] {
+            font-style: italic;
+            font-size:  1.25em;
+            letter-spacing: 0.1em;
+            opacity: 0.64;
+        }
+        [box] {
+            display: block;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+
+</head>
+<body class="">
+    <header>
+        <h1>Grid Playground</h1>
+    </header>
+    <style>
+        body>header {
+            padding: 1rem;
+          --color--PaperBack: hsl( 37, 55%, 85%);
+          --color--PaperText: hsl(  0,  0%,  8%);
+            background-color: var(--color--PaperBack);
+                       color: var(--color--PaperText);
+        }
+    </style>
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ gridTG11 -->
+    <article>
+        <header> Grid Playground </header>
+        <div class="gridTG12">
+            <img src="art/placeholderHQ11.jpg" alt="">
+            <img src="art/placeholderHQ14.jpg" alt="">
+            <img src="art/placeholderHQ15.jpg" alt="">
+            <img src="art/placeholderHQ15b.jpg" alt="">
+            <style>
+                .gridTG12 {
+                    display: grid;
+                    grid-gap: 1.5em;
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            </style>
+        </div>
+        <div class="gridTG11">
+            <img src="art/placeholderHW11.jpg" alt="">
+            <img src="art/placeholderHW11b.jpg" alt="">
+            <img src="art/placeholderHW11c.jpg" alt="">
+            <style>
+                .gridTG11 {
+                    padding-top: 1.5em;
+                    display: grid;
+                    grid-gap: 1.5em;
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            </style>
+        </div>
+        <div class="gridTG13">
+            <img src="art/placeholderHW11e.jpg" alt="">
+            <img src="art/placeholderHQ11.jpg" alt="">
+            <img src="art/placeholderHV11.jpg" alt="">
+            <style>
+                .gridTG13 {
+                    padding-top: 1.5em;
+                    display: grid;
+                    grid-gap: 1.5em;
+                    grid-template-columns: 1774fr 1080fr 657fr;
+                }
+            </style>
+        </div>
+    </article>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ gridTG11 -->
+    <article>
+        <header> Grid Playground </header>
+        <div class="gridTG12">
+            <img src="art/placeholderGQ31.jpg" alt="">
+            <img src="art/placeholderGQ12a.jpg" alt="">
+            <img src="art/placeholderGQ32.jpg" alt="">
+            <img src="art/placeholderGQ33.jpg" alt="">
+        </div>
+        <div class="gridTG11">
+            <img src="art/placeholderGW21b.jpg" alt="">
+            <img src="art/placeholderGW21.jpg" alt="">
+            <img src="art/placeholderGW21c.jpg" alt="">
+        </div>
+        <div class="gridTG13">
+            <img src="art/placeholderGW10a.jpg" alt="">
+            <img src="art/placeholderGQ11b.jpg" alt="">
+            <img src="art/placeholderGV11a.jpg" alt="">
+        </div>
+    </article>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ END -->
+</body>
+</html>
