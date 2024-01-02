@@ -246,7 +246,7 @@
             }
     </style>
     <details open>
-        <summary class="summaryHeader">Gallery snippets</summary>
+        <summary class="summaryHeader">gridGalleryG21</summary>
         <article class="gridGalleryG21">
             <style display-source>
                 /*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ rows */
@@ -255,7 +255,7 @@
                     display: grid;
                     grid-gap: var(--grid-gap--standart);
                     grid-template-columns: var(--grid-template-columns);
-                  --grid-template-columns: 1fr;
+                  --grid-template-columns: 1fr; /* reset child grid to 1fr */
                     }
                 .gridGalleryG21 .gridrow.X    {--grid-template-columns: repeat(1, 1fr);}
                 .gridGalleryG21 .gridrow.XX   {--grid-template-columns: repeat(2, 1fr);}
@@ -285,27 +285,35 @@
                 <img src="art/placeholderGQ33.jpg" alt="">
                 <img src="art/placeholderGQ42c.jpg" alt="">
             </figure>
-
+        </article>
+        <article class="gridGalleryG21">
+            <style display-source>
+                /*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ scrollSticky */
+                .gridGalleryG21 { position: relative; }
+                .gridGalleryG21 .scrollStickyWrap >*,
+                .gridGalleryG21 .scrollSticky {
+                    position: sticky;
+                    top: 0;
+                    }
+            </style>
             <figure class="gridrow XX scrollSticky">
                 <a name="scrollSticky"></a>
-                <style display-source>
-                    /*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ scrollSticky */
-                    .gridGalleryG21 { position: relative; }
-                    .gridGalleryG21 .scrollSticky {
-                        position: sticky;
-                        top: 0;
-                        }
-                </style>
+                <div></div>
                 <img src="art/placeholderGQ11b.jpg" alt="">
+                <figcaption>scrollSticky</figcaption>
             </figure>
             <figure class="gridrow XX">
-                <section class="gridrow X">
+                <section class="gridrow X scrollStickyWrap">
                     <img src="art/placeholderGQ33.jpg" alt="">
+                    <img src="art/placeholderGW21.jpg" alt="" class="outlineG21">
                     <img src="art/placeholderGQ42c.jpg" alt="">
                     <img src="art/placeholderGW21b.jpg" alt="">
-                    <img src="art/placeholderGW21.jpg" alt="">
                     <img src="art/placeholderGW21c.jpg" alt="">
                 </section>
+            </figure>
+            <figure class="gridrow XX scrollSticky" style="top:auto;bottom:0;">
+                <div></div>
+                <img src="art/placeholderGW21c.jpg" alt="" class="outlineG21">
             </figure>
             <figure class="gridrow X scrollSticky">
                 <img src="art/placeholderGW10b.jpg" alt="">
@@ -314,8 +322,21 @@
             <section style="height:100vh"></section>
             <style display-source>
                 /*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ plugins */
+                .outlineG21 {
+                    outline: var(--grid-gap--standart) solid var(--color-NobleBlack);
+                    background: var(--color-NobleBlack);
+                    display: block;
+                    object-fit: contain;
+                }
                 /* <a name="scrollAnchor"></a> */
                 .gridGalleryG21 .gridrow >a[name] { position: absolute; }
+                /* <figcaption> inside row gaps */
+                .gridGalleryG21 figure {
+                    position: relative;
+                    }
+                .gridGalleryG21 figcaption {
+                    position: absolute;
+                    }
             </style>
             <figure class="gridrow X">
                 <img src="art/placeholderGW10b.jpg" alt="">
