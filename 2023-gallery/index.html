@@ -108,6 +108,62 @@
 
 </head>
 <body class="">
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ EventDebouncer -->
+    <article>
+        <script>
+        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ EventDebouncer 2024
+        //  Handles debouncing of events via requestAnimationFrame
+            function EventDebouncer (callback) {
+                this.callback = callback;
+                this.ticking = false;
+            };
+            EventDebouncer.prototype = {
+                constructor: EventDebouncer,
+                update:
+                    function() {
+                        this.callback && this.callback();
+                        this.ticking = false;
+                    },
+                requestTick:
+                    function() {
+                        if(!this.ticking) {
+                            const action = this.rafCallback || (this.rafCallback = this.update.bind(this));
+                            requestAnimationFrame(action);
+                            this.ticking = true;
+                        }
+                    },
+                handleEvent:
+                    function() {
+                        this.requestTick();
+                    }
+            };
+        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Debouncer usage
+        /*
+            const action = f=>console.log('pageYOffset:',window.pageYOffset);
+            const eventReaction = new EventDebouncer(action);
+            window.addEventListener('scroll', eventReaction, false);
+            eventReaction.handleEvent();
+        */
+        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /Debouncer
+        </script>
+        <script>
+        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ CSS VH 2024
+        //  1vh = 1% of real height
+            const setCSSvhUnit = () => {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+                };
+            const setCSSvhUnitEvent = new EventDebouncer(setCSSvhUnit);
+            window.addEventListener('resize',setCSSvhUnit);
+            setCSSvhUnit();
+        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+        </script>
+    </article>
+
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ grid -->
+
     <header>
         <h1>Grid Playground</h1>
     </header>
@@ -286,7 +342,7 @@
                 <img src="art/placeholderGQ42c.jpg" alt="">
             </figure>
         </article>
-        <article class="gridGalleryG21">
+        <article class="gridGalleryG21" style="min-height: calc( var(--vh, 1vh) *100 )">
             <style display-source>
                 /*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ scrollSticky */
                 .gridGalleryG21 { position: relative; }
