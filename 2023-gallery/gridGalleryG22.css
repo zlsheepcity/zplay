@@ -1,0 +1,32 @@
+/*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ grid */
+
+.gridGalleryG22,
+.gridGalleryG22 .gridrow {
+    display: grid;
+    grid-gap: var(--gap);
+    grid-template-columns: var(--grid-template-columns);
+  --grid-template-columns: 1fr; /* reset child grid to 1fr default */
+}
+
+/*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ gaps */
+
+.gridGalleryG22 {
+  --gap--base: 1.500em;
+  --gap--mini: 0.125em;
+  --gap: var(--gap--base);
+}
+
+@media all and (max-width:1080px) {
+    .gridGalleryG22 {--gap: var(--gap--mini);}
+}
+
+/*~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ rows */
+
+.gridGalleryG22 .gridrow.X    {--grid-template-columns: repeat(1, 1fr);}
+.gridGalleryG22 .gridrow.XX   {--grid-template-columns: repeat(2, 1fr);}
+.gridGalleryG22 .gridrow.XXX  {--grid-template-columns: repeat(3, 1fr);}
+.gridGalleryG22 .gridrow.XXXX {--grid-template-columns: repeat(4, 1fr);}
+.gridGalleryG22 .gridrow.X5   {--grid-template-columns: repeat(5, 1fr);}
+.gridGalleryG22 .gridrow.X6   {--grid-template-columns: repeat(6, 1fr);}
+
+/* EOF */

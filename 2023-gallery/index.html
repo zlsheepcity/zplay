@@ -93,6 +93,10 @@
 
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ DESIGN -->
 
+    <link
+        href="gridGalleryG22.css"
+        type="text/css" rel="stylesheet" media="all">
+
     <style>
         [mock] {
             font-style: italic;
@@ -109,7 +113,7 @@
 </head>
 <body class="">
 
-    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ EventDebouncer -->
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ CSS VH Scripts -->
     <article>
         <script>
         //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ EventDebouncer 2024
@@ -138,25 +142,28 @@
                         this.requestTick();
                     }
             };
-        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Debouncer usage
+        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ EventDebouncer usage
         /*
             const action = f=>console.log('pageYOffset:',window.pageYOffset);
             const eventReaction = new EventDebouncer(action);
             window.addEventListener('scroll', eventReaction, false);
             eventReaction.handleEvent();
         */
-        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /Debouncer
+        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /EventDebouncer
         </script>
         <script>
-        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ CSS VH 2024
-        //  1vh = 1% of real height
-            const setCSSvhUnit = () => {
-                let vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-                };
-            const setCSSvhUnitEvent = new EventDebouncer(setCSSvhUnit);
-            window.addEventListener('resize',setCSSvhUnit);
-            setCSSvhUnit();
+        //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Real CSS vh 2024
+        //  Set 1vh = 1% of real window size
+        //  Use min-height: calc(var(--vh,1vh)*100);
+            (function activateRealCSSvh () {
+                const setVH = () => {
+                    let vh = window.innerHeight * 0.01;
+                    document.documentElement.style.setProperty('--vh', `${vh}px`);
+                    };
+                const event = new EventDebouncer(setVH);
+                window.addEventListener('resize',event);
+                event.handleEvent();
+            })();
         //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
         </script>
     </article>
@@ -396,6 +403,16 @@
             </style>
             <figure class="gridrow X">
                 <img src="art/placeholderGW10b.jpg" alt="">
+            </figure>
+        </article>
+    </details>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ END -->
+    <details open>
+        <summary class="summaryHeader">gridGalleryG22</summary>
+        <article class="gridGalleryG22">
+            <figure class="gridrow XX">
+                <img src="art/placeholderGQ33.jpg" alt="">
+                <img src="art/placeholderGQ42c.jpg" alt="">
             </figure>
         </article>
     </details>
