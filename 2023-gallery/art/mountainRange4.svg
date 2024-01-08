@@ -5,8 +5,8 @@
 	 width="1000px" height="100px" viewBox="0 0 1000 100" style="enable-background:new 0 0 1000 100;" xml:space="preserve">
 <style type="text/css">
 <![CDATA[
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#ED1C24;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;}
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:hsl(212, 25%, 44%);}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:hsl(212, 35%, 34%);}
 ]]>
 </style>
 <path class="st0" d="M0,100V74c0.7-0.5,3-1.5,3.9-1.5c5.2-0.2,9.2-3,12.8-6.3c2.3-2,4.3-2.9,7.2-1.6c2.3,1,4.6,0.4,6.5-1.1
