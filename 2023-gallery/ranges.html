@@ -108,6 +108,52 @@
 
 </head>
 <body class="">
+
+<article id="MountainRangeGroup" class="MountainRangeGroup">
+    <div id="MountainRangeLine1" class="MountainRange">
+    <div id="MountainRangeLine2" class="MountainRange">
+    <div id="MountainRangeLine3" class="MountainRange">
+        
+    </div>
+    </div>
+    </div>
+    <style>
+        .MountainRange {
+            position: relative;
+            margin-top: var(--range-height);
+            padding-top: 1px;
+            background-color: var(--range-color);
+        }
+        .MountainRange::before {
+            content: '';
+            display: block;
+            max-width: 100%;
+            overflow: hidden;
+            position: absolute;
+            bottom: calc(100% - 1px);
+            background-image: var(--range-image);
+            background-size:  100vw var(--range-height);
+            width: 100vw;
+            height: var(--range-height);
+        }
+        #MountainRangeLine1 {
+          --range-image:  url(art/mountainRange1.svg);
+          --range-height: 10vw;
+          --range-color:  hsl(212, 34%, 29%);
+        }
+        #MountainRangeLine2 {
+          --range-image:  url(art/mountainRange2.svg);
+          --range-height: 10vw;
+          --range-color:  hsl(212, 34%, 34%);
+        }
+        #MountainRangeLine3 {
+          --range-image:  url(art/mountainRange3.svg);
+          --range-height: 10vw;
+          --range-color:  hsl(212, 29%, 39%);
+        }
+    </style>
+</article>
+
     <article>
         <img src="art/mountainRange1.svg" alt=""
             style="
