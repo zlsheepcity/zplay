@@ -109,6 +109,180 @@
 </head>
 <body class="">
 <article>
+    <script display-source class="layoutBookWrap">
+    //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ EventDebouncer 2024
+        function EventDebouncer (callback) {
+            this.callback = callback;
+            this.ticking = false;
+        };
+        EventDebouncer.prototype = {
+            constructor: EventDebouncer,
+            update:
+                function() {
+                    this.callback && this.callback();
+                    this.ticking = false;
+                },
+            requestTick:
+                function() {
+                    if(!this.ticking) {
+                        const action = this.action || (this.action = this.update.bind(this));
+                        requestAnimationFrame(action);
+                        this.ticking = true;
+                    }
+                },
+            handleEvent:
+                function() {
+                    this.requestTick();
+                }
+        };
+    //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /EventDebouncer
+    </script>
+</article>
+<div style="height:110vh;">scroll me</div>
+<article>
+    <style>
+        .rangearea {
+          --range-height: 10vw; /* top layer with image */
+          --slope-height: 15vw; /* bottom layer with color */
+        }
+        .rangearea {
+            background-color: lightskyblue;
+            background-color: white;
+            /* fixed in size + hidden overflow */
+            width:  100%;
+            height: 65vw;
+            overflow: hidden;
+        }
+        .rangelist {
+            position: relative;
+            display: grid;
+            grid-template-areas: 'line';
+        }
+        .rangelist>* {grid-area: line}
+        .rangeline {
+            position: relative;
+            width: 100vw;
+            height: 25vw;
+          --Y1: var(--range-offset,0);
+          --Y2: var(--range-offway,0);
+          --YY: calc( var(--Y1) + var(--Y2)*var(--rv,0) );
+            transform: translateY( var(--YY) );
+          --transition: transform 10ms linear;
+        }
+        .rangeline::before {
+            content:  '';
+            display:  block;
+            position: absolute;
+            height: var(--range-height);
+            top:    1px;
+            left:   0;
+            right:  0;
+            background-image: var(--range-image);
+            background-size:  100vw var(--range-height);
+        }
+        .rangeline::after {
+            content:  '';
+            display:  block;
+            position: absolute;
+            height: var(--slope-height);
+            bottom: 0;
+            left:   0;
+            right:  0;
+            background-color: var(--slope-color);
+        }
+        .rangeline#rrline1 {--range-image: url(art/moutRange1.svg)}
+        .rangeline#rrline2 {--range-image: url(art/moutRange2.svg)}
+        .rangeline#rrline3 {--range-image: url(art/moutRange3.svg)}
+        .rangeline#rrline4 {--range-image: url(art/moutRange4.svg)}
+        .rangeline#rrline5 {--range-image: url(art/moutRangeFin1.svg)}
+        .rangeline#rrline5 {
+            --range-height: 12vw;
+            --slope-height: 13vw;
+        }
+
+        .rangeline#rrline1 {--slope-color: hsl(212, 25%, 45%)}
+        .rangeline#rrline2 {--slope-color: hsl(212, 30%, 40%)}
+        .rangeline#rrline3 {--slope-color: hsl(212, 35%, 35%)}
+        .rangeline#rrline4 {--slope-color: hsl(212, 40%, 30%)}
+        .rangeline#rrline5 {--slope-color: hsl(212,100%,100%)}
+
+        .rangeline#rrline1 {--range-offset:  0vw; --range-offway: 20vw;}
+        .rangeline#rrline2 {--range-offset: 10vw; --range-offway: 15vw;}
+        .rangeline#rrline3 {--range-offset: 20vw; --range-offway: 10vw;}
+        .rangeline#rrline4 {--range-offset: 30vw; --range-offway:  5vw;}
+        .rangeline#rrline5 {--range-offset: 40vw; --range-offway:  0vw;}
+/*
+        .rangelist:hover .rangeline#rrline1 {--range-offset: 20vw}
+        .rangelist:hover .rangeline#rrline2 {--range-offset: 25vw}
+        .rangelist:hover .rangeline#rrline3 {--range-offset: 30vw}
+        .rangelist:hover .rangeline#rrline4 {--range-offset: 35vw}
+        .rangelist:hover .rangeline#rrline5 {--range-offset: 40vw}
+*/
+    </style>
+    <section class="rangearea" id="ObservableRangearea">
+        <div class="rangelist">
+            <div id="rrline1" class="rangeline"></div>
+            <div id="rrline2" class="rangeline"></div>
+            <div id="rrline3" class="rangeline"></div>
+            <div id="rrline4" class="rangeline"></div>
+            <div id="rrline5" class="rangeline"></div>
+        </div>
+    </section>
+    <script>
+    //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ #ObservableRangearea
+
+        function runObservableRangearea () {
+            const DOM = {
+                area: document.getElementById('ObservableRangearea'),
+            };
+            const state = {
+                active: false,
+                boundingClientRect: {},
+                intersectionRect: {},
+                rootBounds: {},
+            };
+            const setRatioVar = () => {
+                const wt = window.pageYOffset;
+                const wh = window.innerHeight;
+                const vt = DOM.area.offsetTop;
+                const vh = DOM.area.offsetHeight;
+                const lt = wt+wh-vt;
+                const lh = wh/2 +vh;
+                const rv = lt<0?0 : lt>lh?1 : lt/lh;
+                DOM.area.style.setProperty('--rv', `${rv}`);
+            }
+            const eventOnScroll = new EventDebouncer(setRatioVar);
+            const eventOnScrollActivate = () => {
+                if(!state.active) {
+                    state.active = true;
+                    window.addEventListener('scroll', eventOnScroll);
+                }
+            }
+            const eventOnScrollDeactivate = () => {
+                if (state.active) {
+                    state.active = false;
+                    window.removeEventListener('scroll', eventOnScroll);
+                }
+            }
+
+            const obAction = entries => entries.forEach(entry => {
+                const {isIntersecting} = entry;
+                if ( isIntersecting ) eventOnScrollActivate();
+                if (!isIntersecting ) eventOnScrollDeactivate();
+            });
+            const obOption = {
+                rootMargin: '-50% 0% 0% 0%',
+                threshold:  [0],
+            };
+            const ObserverN1 = new IntersectionObserver(obAction,obOption);
+
+            eventOnScroll.handleEvent();
+            ObserverN1.observe(DOM.area);
+        }
+        runObservableRangearea();
+    </script>
+</article>
+<article>
     <style>
         .kkline {
             position: relative;
@@ -145,10 +319,10 @@
         .kkline#kkline2 {--range-image: url(art/moutRange2.svg)}
         .kkline#kkline3 {--range-image: url(art/moutRange3.svg)}
         .kkline#kkline4 {--range-image: url(art/moutRange4.svg)}
-        .kkline#kkline5 {--range-image: url(art/moutRangeG.svg)}
+        .kkline#kkline5 {--range-image: url(art/moutRangeFin1.svg)}
         .kkline#kkline5 {
-            --range-height: 17vw;
-            --slope-height:  3vw;
+            --range-height: 12vw;
+            --slope-height:  8vw;
         }
 
         .kkline#kkline1 {--slope-color: hsl(212, 25%, 45%)}
@@ -161,7 +335,7 @@
         .kkline#kkline2 {--range-offset:  5vw}
         .kkline#kkline3 {--range-offset: 10vw}
         .kkline#kkline4 {--range-offset: 15vw}
-        .kkline#kkline5 {--range-offset: 15vw}
+        .kkline#kkline5 {--range-offset: 20vw}
 
         .kkgroup:hover .kkline#kkline1 {--range-offset:  0vw}
         .kkgroup:hover .kkline#kkline2 {--range-offset: 10vw}
@@ -185,7 +359,6 @@
             background-color: lightcyan;
         }
     </style>
-    <div style="height:110vh;">scroll me</div>
     <div class="kkwrap">
         <div class="kkgroup">
             <div id="kkline1" class="kkline"></div>
