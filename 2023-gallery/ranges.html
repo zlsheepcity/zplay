@@ -212,11 +212,11 @@
         .rangeline#rrline4 {--range-offset: 30vw; --range-offway:  5vw;}
         .rangeline#rrline5 {--range-offset: 40vw; --range-offway:  0vw;}
 /*
-        .rangelist:hover .rangeline#rrline1 {--range-offset: 20vw}
-        .rangelist:hover .rangeline#rrline2 {--range-offset: 25vw}
-        .rangelist:hover .rangeline#rrline3 {--range-offset: 30vw}
-        .rangelist:hover .rangeline#rrline4 {--range-offset: 35vw}
-        .rangelist:hover .rangeline#rrline5 {--range-offset: 40vw}
+        .rangeline#rrline1 {--range-offset:  0vw; --range-offway: 20vw;}
+        .rangeline#rrline2 {--range-offset: 10vw; --range-offway: 15vw;}
+        .rangeline#rrline3 {--range-offset: 20vw; --range-offway: 10vw;}
+        .rangeline#rrline4 {--range-offset: 30vw; --range-offway:  5vw;}
+        .rangeline#rrline5 {--range-offset: 40vw; --range-offway:  0vw;}
 */
     </style>
     <section class="rangearea" id="ObservableRangearea">
@@ -234,6 +234,7 @@
         function runObservableRangearea () {
             const DOM = {
                 area: document.getElementById('ObservableRangearea'),
+                windowHeight: window.innerHeight,
             };
             const state = {
                 active: false,
@@ -243,7 +244,7 @@
             };
             const setRatioVar = () => {
                 const wt = window.pageYOffset;
-                const wh = window.innerHeight;
+                const wh = DOM.windowHeight; //window.innerHeight;
                 const vt = DOM.area.offsetTop;
                 const vh = DOM.area.offsetHeight;
                 const lt = wt+wh-vt;
@@ -331,11 +332,24 @@
         .kkline#kkline4 {--slope-color: hsl(212, 40%, 30%)}
         .kkline#kkline5 {--slope-color: hsl(212,100%,100%)}
 
+        .kkline#kkline1 {--range-offset: 0vw}
+        .kkline#kkline2 {--range-offset: 2vw}
+        .kkline#kkline3 {--range-offset: 4vw}
+        .kkline#kkline4 {--range-offset: 6vw}
+        .kkline#kkline5 {--range-offset: 8vw}
+/*
+        .kkline#kkline1 {--range-offset: 0vw}
+        .kkline#kkline2 {--range-offset: 2vw}
+        .kkline#kkline3 {--range-offset: 4vw}
+        .kkline#kkline4 {--range-offset: 6vw}
+        .kkline#kkline5 {--range-offset: 8vw}
+
         .kkline#kkline1 {--range-offset:  0vw}
         .kkline#kkline2 {--range-offset:  5vw}
         .kkline#kkline3 {--range-offset: 10vw}
         .kkline#kkline4 {--range-offset: 15vw}
         .kkline#kkline5 {--range-offset: 20vw}
+*/
 
         .kkgroup:hover .kkline#kkline1 {--range-offset:  0vw}
         .kkgroup:hover .kkline#kkline2 {--range-offset: 10vw}
