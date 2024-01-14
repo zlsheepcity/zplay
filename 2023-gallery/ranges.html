@@ -174,7 +174,7 @@
             display:  block;
             position: absolute;
             height: var(--range-height);
-            top:    1px;
+            top:    2px;
             left:   0;
             right:  0;
             background-image: var(--range-image);
@@ -211,13 +211,37 @@
         .rangeline#rrline3 {--range-offset: 20vw; --range-offway:15.0vw;}
         .rangeline#rrline4 {--range-offset: 30vw; --range-offway: 7.5vw;}
         .rangeline#rrline5 {--range-offset: 40vw; --range-offway:   0vw;}
-/*
-        .rangeline#rrline1 {--range-offset:  0vw; --range-offway: 20vw;}
-        .rangeline#rrline2 {--range-offset: 10vw; --range-offway: 15vw;}
-        .rangeline#rrline3 {--range-offset: 20vw; --range-offway: 10vw;}
-        .rangeline#rrline4 {--range-offset: 30vw; --range-offway:  5vw;}
-        .rangeline#rrline5 {--range-offset: 40vw; --range-offway:  0vw;}
-*/
+    </style>
+    <style>
+    @media all and (max-width:1080px) {
+        .rangearea {
+          --range-height: 20vw; /* top layer with image */
+          --slope-height: 30vw; /* bottom layer with color */
+        }
+        .rangearea {
+            width:  100%;
+            height: 128vw;
+        }
+        .rangeline {
+            width: 100vw;
+            height: 50vw;
+        }
+        .rangeline::before {
+            background-size:  200vw var(--range-height);
+            background-position: 50% 0;
+            top:    2px;
+        }
+        .rangeline#rrline5 {
+            --range-height: 24vw;
+            --slope-height: 26vw;
+        }
+
+        .rangeline#rrline1 {--range-offset:  0vw; --range-offway:60vw;}
+        .rangeline#rrline2 {--range-offset: 20vw; --range-offway:45vw;}
+        .rangeline#rrline3 {--range-offset: 40vw; --range-offway:30vw;}
+        .rangeline#rrline4 {--range-offset: 60vw; --range-offway:15vw;}
+        .rangeline#rrline5 {--range-offset: 80vw; --range-offway:   0vw;}
+    }
     </style>
     <section class="rangearea" id="ObservableRangearea">
         <div class="rangelist">
