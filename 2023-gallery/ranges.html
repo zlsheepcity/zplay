@@ -147,10 +147,10 @@
         }
         .rangearea {
             background-color: lightskyblue;
-            background-color: white;
+/*            background-color: white;*/
             /* fixed in size + hidden overflow */
             width:  100%;
-            height: 65vw;
+            height: 64vw;
             overflow: hidden;
         }
         .rangelist {
@@ -206,11 +206,11 @@
         .rangeline#rrline4 {--slope-color: hsl(212, 40%, 30%)}
         .rangeline#rrline5 {--slope-color: hsl(212,100%,100%)}
 
-        .rangeline#rrline1 {--range-offset:  0vw; --range-offway: 20vw;}
-        .rangeline#rrline2 {--range-offset: 10vw; --range-offway: 15vw;}
-        .rangeline#rrline3 {--range-offset: 20vw; --range-offway: 10vw;}
-        .rangeline#rrline4 {--range-offset: 30vw; --range-offway:  5vw;}
-        .rangeline#rrline5 {--range-offset: 40vw; --range-offway:  0vw;}
+        .rangeline#rrline1 {--range-offset:  0vw; --range-offway:30.0vw;}
+        .rangeline#rrline2 {--range-offset: 10vw; --range-offway:22.5vw;}
+        .rangeline#rrline3 {--range-offset: 20vw; --range-offway:15.0vw;}
+        .rangeline#rrline4 {--range-offset: 30vw; --range-offway: 7.5vw;}
+        .rangeline#rrline5 {--range-offset: 40vw; --range-offway:   0vw;}
 /*
         .rangeline#rrline1 {--range-offset:  0vw; --range-offway: 20vw;}
         .rangeline#rrline2 {--range-offset: 10vw; --range-offway: 15vw;}
@@ -248,7 +248,7 @@
                 const vt = DOM.area.offsetTop;
                 const vh = DOM.area.offsetHeight;
                 const lt = wt+wh-vt;
-                const lh = wh/2 +vh;
+                const lh = wh*0.5 +vh;
                 const rv = lt<0?0 : lt>lh?1 : lt/lh;
                 DOM.area.style.setProperty('--rv', `${rv}`);
             }
@@ -272,7 +272,7 @@
                 if (!isIntersecting ) eventOnScrollDeactivate();
             });
             const obOption = {
-                rootMargin: '-50% 0% 0% 0%',
+                rootMargin: '0% 0% 0% 0%',
                 threshold:  [0],
             };
             const ObserverN1 = new IntersectionObserver(obAction,obOption);
@@ -316,10 +316,17 @@
             background-color: var(--slope-color);
         }
 
+        .kkline#kkline1 {--range-image: url(art/moutRange11.svg)}
+        .kkline#kkline2 {--range-image: url(art/moutRange12.svg)}
+        .kkline#kkline3 {--range-image: url(art/moutRange13.svg)}
+        .kkline#kkline4 {--range-image: url(art/moutRange14.svg)}
+/*
         .kkline#kkline1 {--range-image: url(art/moutRange1.svg)}
         .kkline#kkline2 {--range-image: url(art/moutRange2.svg)}
         .kkline#kkline3 {--range-image: url(art/moutRange3.svg)}
         .kkline#kkline4 {--range-image: url(art/moutRange4.svg)}
+*/
+
         .kkline#kkline5 {--range-image: url(art/moutRangeFin1.svg)}
         .kkline#kkline5 {
             --range-height: 12vw;
@@ -332,12 +339,30 @@
         .kkline#kkline4 {--slope-color: hsl(212, 40%, 30%)}
         .kkline#kkline5 {--slope-color: hsl(212,100%,100%)}
 
-        .kkline#kkline1 {--range-offset: 0vw}
-        .kkline#kkline2 {--range-offset: 2vw}
-        .kkline#kkline3 {--range-offset: 4vw}
-        .kkline#kkline4 {--range-offset: 6vw}
-        .kkline#kkline5 {--range-offset: 8vw}
+        .kkline#kkline1 {--range-offset: 0.0vw}
+        .kkline#kkline2 {--range-offset: 2.5vw}
+        .kkline#kkline3 {--range-offset: 5.0vw}
+        .kkline#kkline4 {--range-offset: 7.5vw}
+        .kkline#kkline5 {--range-offset:10.0vw}
 /*
+        .kkline#kkline1 {--range-offset: 0.0vw}
+        .kkline#kkline2 {--range-offset: 3.5vw}
+        .kkline#kkline3 {--range-offset: 7.0vw}
+        .kkline#kkline4 {--range-offset:10.5vw}
+        .kkline#kkline5 {--range-offset:14.0vw}
+
+        .kkline#kkline1 {--range-offset: 0vw}
+        .kkline#kkline2 {--range-offset: 3vw}
+        .kkline#kkline3 {--range-offset: 6vw}
+        .kkline#kkline4 {--range-offset: 9vw}
+        .kkline#kkline5 {--range-offset:12vw}
+
+        .kkline#kkline1 {--range-offset: 0.0vw}
+        .kkline#kkline2 {--range-offset: 2.5vw}
+        .kkline#kkline3 {--range-offset: 5.0vw}
+        .kkline#kkline4 {--range-offset: 7.5vw}
+        .kkline#kkline5 {--range-offset:10.0vw}
+
         .kkline#kkline1 {--range-offset: 0vw}
         .kkline#kkline2 {--range-offset: 2vw}
         .kkline#kkline3 {--range-offset: 4vw}
