@@ -108,8 +108,11 @@
 
 </head>
 <body class="">
+
+<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Shared resources -->
+
 <article>
-    <script display-source class="layoutBookWrap">
+    <script>
     //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ EventDebouncer 2024
         function EventDebouncer (callback) {
             this.callback = callback;
@@ -133,28 +136,40 @@
             handleEvent:
                 function() {
                     this.requestTick();
-                }
+                },
         };
     //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /EventDebouncer
     </script>
 </article>
 
 
+<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Story 1 -->
+
 <article class="layoutBook bookDialogs">
     <style>
         .bookDialogs {
-            padding: 8em 4em;
+            padding: 4em 1em;
         }
         .bookDialogs figure {
             padding: 4em 0;
         }
-    @media all and (max-width:1080px) {
+    @media all and (min-width:1080px) {
         .bookDialogs {
-            padding: 4em 1em;
+            padding: 8em 4em;
+        }
+        .text-dialog {
+            font-size: 20px;
         }
     }
     </style>
-    <section>
+    <style display-source class="layoutBookWrap">
+    [display-source] {
+        display:     block;
+        font-family: monospace;
+        white-space: pre-wrap;
+    }
+    </style>
+    <section class="text-dialog">
         <p>
             — Какое настроение было у тебя в понедельник?
         </p>
@@ -178,9 +193,9 @@
         </p>
     </section>
     <figure class="layoutBookWrap">
-        <img src="art/mountainGraph1.svg" alt="График кривой линии горного хребта">
+        <img src="art/moutGraph1.svg" alt="График кривой линии горного хребта">
     </figure>
-    <section>
+    <section class="text-dialog">
         <p>
             — Зачем тебе горы?
         </p>
@@ -189,6 +204,8 @@
         </p>
     </section>
 </article>
+
+<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Mountain range -->
 
 <article>
     <style>
@@ -358,6 +375,107 @@
         runObservableRangearea();
     </script>
 </article>
+
+<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Story 1 -->
+
+<article class="layoutBook bookDialogs">
+    <section class="text-dialog">
+        <p>
+            — Я потеряла любовь :(
+        </p>
+        <p>
+            — Создай новую
+        </p>
+    </section>
+    <script display-source>
+    let love = {
+        is: true
+    };
+    </script>
+    <section class="text-dialog">
+        <p>
+            — Спасибо за поддержку, но сейчас у меня нет настроения играться с кодом. Я потеряла настоящую любовь.
+        </p>
+        <p>
+            — В чём разница?
+        </p>
+        <p>
+            — Ты подкалываешь меня? Настоящая любовь это не объект с детерминированными примитивами. Любовь это сокровенное и волшебное чувство. Это постоянно меняющееся состояние зависимое от бесконечного количества условий и событий. Любовь это... я даже не могу сформулировать короткое и простое объяснение настоящей любви.
+        </p>
+        <p>
+            — Я не подкалываю. Сложное начинается с простых шагов.
+        </p>
+    </section>
+    <script display-source>
+    love.feeling = function (target) {
+        if (target) return true;
+        else return false;
+    };
+    </script>
+    <section class="text-dialog">
+        <p>
+            — Не останавливайся, добавляй, меняй. Рано или поздно ты достигнешь результата, каким бы сложным он не казался в начале пути.
+        </p>
+    </section>
+    <script display-source>
+    love.it = (target) => (
+        target && target !== 'ни в коем случае'
+    );
+
+    love.feeling = function (target) {
+        if ( love.it(target) ) return true;
+        else return false;
+    };
+    </script>
+    <section class="text-dialog">
+        <p>
+            — Даже то, что кажется волшебным, что не подчиняется законам логики и здравого смысла, тоже можно начать с простых шагов.
+        </p>
+    </section>
+    <script display-source>
+    // [NB*]
+    love.magic = () => 0.1 + 0.2 > 0.3
+    </script>
+    <blockquote>
+        <p>
+            [NB*] Здесь отсылка к забавному и нелогичному факту из мира вычислительной электроники. Ссылка с объяснением:
+            <a href="https://0.30000000000000004.com/">0.30000000000000004.com</a>
+        </p>
+    </blockquote>
+
+
+    <header>
+        <h2>love.picture =</h2>
+    </header>
+
+    <section class="text-dialog">
+        <p>
+            — Я поняла что ты хочешь сказать. Если долго и упорно работать, то через миллион лет создам настоящую любовь.
+        </p>
+        <p>
+            — Получится чуть быстрее, чем четыре миллиарда лет спонтанной эволюции биологических видов.
+        </p>
+        <p>
+            — Но мне всё-равно грустно. Любовь, которую я потеряла, была у меня без этих сложностей.
+        </p>
+        <p>
+            — То есть, ты использовала любовь написанную другими?
+        </p>
+        <p>
+            — Да
+        </p>
+    </section>
+
+    <footer>
+        <h2>import love;</h2>
+    </footer>
+
+</article>
+
+<!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ BLOB -->
+
+<footer style="height:110vh;"></footer>
+
 <article>
     <style>
         .kkline {
