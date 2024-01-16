@@ -162,13 +162,13 @@
         }
     }
     </style>
-    <style display-source class="layoutBookWrap">
-    [display-source] {
-        display:     block;
-        font-family: monospace;
-        white-space: pre-wrap;
-    }
-    </style>
+<style display-source class="layoutBookWrap">
+[display-source] {
+    display:     block;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+</style>
     <section class="text-dialog">
         <p>
             — Какое настроение было у тебя в понедельник?
@@ -387,11 +387,11 @@
             — Создай новую
         </p>
     </section>
-    <script display-source>
-    let love = {
-        is: true
-    };
-    </script>
+<script display-source>
+let love = {
+    is: true
+};
+</script>
     <section class="text-dialog">
         <p>
             — Спасибо за поддержку, но сейчас у меня нет настроения играться с кодом. Я потеряла настоящую любовь.
@@ -406,12 +406,58 @@
             — Я не подкалываю. Сложное начинается с простых шагов.
         </p>
     </section>
-    <script display-source>
-    love.feeling = function (target) {
-        if (target) return true;
-        else return false;
-    };
-    </script>
+<script display-source>
+love.feeling = function (target) {
+    if (target) return true;
+    else return false;
+};
+</script>
+    <section class="text-dialog">
+        <p>
+            — Добавить что-нибудь новое
+        </p>
+    </section>
+<script display-source>
+love.it = (target) => (
+    target && target !== 'ни в коем случае'
+);
+</script>
+    <section class="text-dialog">
+        <p>
+            — Обновить старое
+        </p>
+    </section>
+<script display-source>
+love.feeling = function (target) {
+    if ( love.it(target) ) return true;
+    else return false;
+};
+</script>
+    <section class="text-dialog">
+        <p>
+            — Даже к волшебному ведут простые шаги
+        </p>
+    </section>
+<script display-source>
+love.magic = () => 0.1 + 0.2 > 0.3
+// https://0.30000000000000004.com
+</script>
+
+    <section class="text-dialog">
+        <p>
+            — Я поняла тебя. Каждое действие приблизит к цели и так далее я создам настоящую любовь. Примерно, через четыре миллиарда лет. Мне грустно, потому что у меня уже была настолько дорогая любовь, и я её потеряла.
+        </p>
+        <p>
+            — Ты использовала любовь созданную кем-то другим?
+        </p>
+        <p>
+            — Да
+        </p>
+    </section>
+<footer display-source>
+import love;
+</footer>
+<!--// 1.16
     <section class="text-dialog">
         <p>
             — Не останавливайся, добавляй, меняй. Рано или поздно ты достигнешь результата, каким бы сложным он не казался в начале пути.
@@ -442,12 +488,9 @@
             <a href="https://0.30000000000000004.com/">0.30000000000000004.com</a>
         </p>
     </blockquote>
-
-
     <header>
         <h2>love.picture =</h2>
     </header>
-
     <section class="text-dialog">
         <p>
             — Я поняла что ты хочешь сказать. Если долго и упорно работать, то через миллион лет создам настоящую любовь.
@@ -469,6 +512,7 @@
     <footer>
         <h2>import love;</h2>
     </footer>
+-->
 
 </article>
 
