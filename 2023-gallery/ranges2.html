@@ -82,7 +82,8 @@
         }
     </style>
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> DEMO 2 -->
-    <article class="layoutValley defaultDemo">
+    <div style="height:120vh;"></div>
+    <article class="layoutValley defaultDemo" id="ObservableRangearea">
         <section sky-header>header</section>
         <section sky-layers><p/><p/><p/><p/></section>
         <section sea-layers><p/><p/><p/><p/></section>
@@ -160,7 +161,8 @@
 
         .layoutValley [sky-layers]>* ,
         .layoutValley [sea-layers]>* {
-          --Y: calc(-1 * var(--rangeDirection, 1) * var(--rangeOffsetEnd, 0));
+          --L: calc(var(--rangeOffsetRun,0) - (var(--rangeOffsetRun,0) - var(--rangeOffsetEnd,0)) * var(--rangeScroll));
+          --Y: calc(-1 * var(--rangeDirection, 1) * var(--L, 0));
             transform: translateY(var(--Y)) scale(var(--rangeDirection));
         }
         .layoutValley [sky-layers]>* {--rangeOffsetRun: var(--rangeOffsetMin);}
@@ -216,8 +218,128 @@
         .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeColor: hsl(212, 35%, 35%);}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeColor: hsl(212, 40%, 30%);}
 
+        @media all and (max-width:1080px) {
+            .layoutValley [sky-header],
+            .layoutValley [sky-layers]>*,
+            .layoutValley [sea-layers]>*,
+            .layoutValley [sea-footer] {
+                background-size:  200vw var(--rangeHeight);
+                background-position: 50% 0;
+            }
+
+        .layoutValley.defaultDemo [sky-header]   {--rangeHeight:12vh}
+        .layoutValley.defaultDemo [sky-layers]>* {--rangeHeight:10vh}
+        .layoutValley.defaultDemo [sea-layers]>* {--rangeHeight:10vh}
+        .layoutValley.defaultDemo [sea-footer]   {--rangeHeight:12vh}
+
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMax: 32vh}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMax: 26vh}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMax: 18vh}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMax: 12vh}
+
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMin: 10vh}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMin:  8vh}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMin:  6vh}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMin:  4vh}
+
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMax: 32vh}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeOffsetMax: 26vh}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMax: 18vh}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMax: 12vh}
+
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMin: 10vh}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeOffsetMin:  8vh}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMin:  6vh}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMin:  4vh}
+        }
+
     /** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /layoutValley */
     </style>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> JS -->
+    <script>
+    //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ EventDebouncer 2024
+        function EventDebouncer (callback) {
+            this.callback = callback;
+            this.ticking = false;
+        };
+        EventDebouncer.prototype = {
+            constructor: EventDebouncer,
+            update:
+                function() {
+                    this.callback && this.callback();
+                    this.ticking = false;
+                },
+            requestTick:
+                function() {
+                    if(!this.ticking) {
+                        const action = this.action || (this.action = this.update.bind(this));
+                        requestAnimationFrame(action);
+                        this.ticking = true;
+                    }
+                },
+            handleEvent:
+                function() {
+                    this.requestTick();
+                },
+        };
+    //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /EventDebouncer
+    </script>
+    <script>
+    //~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ #ObservableRangearea
+
+        function runObservableRangearea () {
+            const DOM = {
+                area: document.getElementById('ObservableRangearea'),
+                windowHeight: window.innerHeight,
+            };
+            const state = {
+                active: false,
+                boundingClientRect: {},
+                intersectionRect: {},
+                rootBounds: {},
+            };
+            const setRatioVar = () => {
+                const wt = window.pageYOffset;
+                const wh = DOM.windowHeight; //window.innerHeight;
+                const vt = DOM.area.offsetTop;
+                const vh = DOM.area.offsetHeight;
+                const wayStart = vt - wh > 0 ? vt - wh : 0;
+                const wayEnd = vt + vh;
+                const wayDistance = wh + vh || 1;
+                const wayDP = (wt - wayStart) / wayDistance;
+                const rangeScroll = wayDP > 0 ? wayDP : wayDP < 1 ? 0:1;
+                DOM.area.style.setProperty('--rangeScroll', `${rangeScroll}`);
+            }
+            const eventOnScroll = new EventDebouncer(setRatioVar);
+            const eventOnScrollActivate = () => {
+                if(!state.active) {
+                    state.active = true;
+                    window.addEventListener('scroll', eventOnScroll);
+                }
+            }
+            const eventOnScrollDeactivate = () => {
+                if (state.active) {
+                    state.active = false;
+                    window.removeEventListener('scroll', eventOnScroll);
+                }
+            }
+
+            const obAction = entries => entries.forEach(entry => {
+                const {isIntersecting} = entry;
+                if ( isIntersecting ) eventOnScrollActivate();
+                if (!isIntersecting ) eventOnScrollDeactivate();
+            });
+            const obOption = {
+                rootMargin: '0% 0% 0% 0%',
+                threshold:  [0],
+            };
+            const ObserverN1 = new IntersectionObserver(obAction,obOption);
+
+            eventOnScroll.handleEvent();
+            ObserverN1.observe(DOM.area);
+        }
+        runObservableRangearea();
+    </script>
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> DEMO 1 -->
     <article class="layoutParallaxValley defaultDemo">
         <header section>header</header>
