@@ -97,7 +97,7 @@
         .layoutValley,
         .layoutValley.defaultSettings {
           --width--total:  100vw;
-          --height--total:  86vh;
+          --height--total:  92vh;
             background: lightskyblue;
         }
 
@@ -118,10 +118,10 @@
             left:  0;
             right: 0;
         }
-        .layoutValley [sky-header]   {top:0; z-index:1}
+        .layoutValley [sky-header]   {top:-1px; z-index:1}
         .layoutValley [sky-layers]>* {top:0}
         .layoutValley [sea-layers]>* {bottom:0}
-        .layoutValley [sea-footer]   {bottom:0}
+        .layoutValley [sea-footer]   {bottom:-1px}
 
         /* layer picture box */
 
@@ -129,7 +129,8 @@
         .layoutValley [sky-layers]>*,
         .layoutValley [sea-layers]>*,
         .layoutValley [sea-footer] {
-            height:           var(--rangeHeight, 0);
+            height: var(--rangeHeight, 0);
+            width:  100%;
             background-image: var(--rangeImage);
             background-size:  var(--width--total) var(--rangeHeight);
             background-color: transparent;
@@ -155,7 +156,7 @@
 
         /* layer scroll offset */
 
-        .layoutValley [sky-header]   {--rangeDirection: -1; transform:scale(var(--rangeDirection));}
+        .layoutValley [sky-header]   {--rangeDirection: -1; transform:scaleY(var(--rangeDirection));}
         .layoutValley [sky-layers]>* {--rangeDirection: -1;}
         .layoutValley [sea-layers]>* {--rangeDirection:  1;}
 
@@ -163,7 +164,7 @@
         .layoutValley [sea-layers]>* {
           --L: calc(var(--rangeOffsetRun,0) - (var(--rangeOffsetRun,0) - var(--rangeOffsetEnd,0)) * var(--rangeScroll));
           --Y: calc(-1 * var(--rangeDirection, 1) * var(--L, 0));
-            transform: translateY(var(--Y)) scale(var(--rangeDirection));
+            transform: translateY(var(--Y)) scaleY(var(--rangeDirection));
         }
         .layoutValley [sky-layers]>* {--rangeOffsetRun: var(--rangeOffsetMin);}
         .layoutValley [sky-layers]>* {--rangeOffsetEnd: var(--rangeOffsetMax);}
@@ -177,15 +178,15 @@
         .layoutValley.defaultDemo [sea-layers]>* {--rangeHeight:10vw}
         .layoutValley.defaultDemo [sea-footer]   {--rangeHeight:12vw}
 
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMax: 32vw}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMax: 26vw}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMax: 18vw}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMax: 12vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMax: 24vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMax: 18vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMax: 12vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMax:  6vw}
 
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMin: 10vw}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMin:  8vw}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMin:  6vw}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMin:  4vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMin:  8vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMin:  6vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMin:  4vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMin:  2vw}
 
         .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMax: 32vw}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeOffsetMax: 26vw}
@@ -227,30 +228,30 @@
                 background-position: 50% 0;
             }
 
-        .layoutValley.defaultDemo [sky-header]   {--rangeHeight:12vh}
-        .layoutValley.defaultDemo [sky-layers]>* {--rangeHeight:10vh}
-        .layoutValley.defaultDemo [sea-layers]>* {--rangeHeight:10vh}
-        .layoutValley.defaultDemo [sea-footer]   {--rangeHeight:12vh}
+        .layoutValley.defaultDemo [sky-header]   {--rangeHeight:24vw}
+        .layoutValley.defaultDemo [sky-layers]>* {--rangeHeight:20vw}
+        .layoutValley.defaultDemo [sea-layers]>* {--rangeHeight:20vw}
+        .layoutValley.defaultDemo [sea-footer]   {--rangeHeight:24vw}
 
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMax: 32vh}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMax: 26vh}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMax: 18vh}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMax: 12vh}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMax: 64vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMax: 52vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMax: 36vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMax: 24vw}
 
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMin: 10vh}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMin:  8vh}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMin:  6vh}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMin:  4vh}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMin: 10vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMin:  8vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMin:  6vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMin:  4vw}
 
-        .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMax: 32vh}
-        .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeOffsetMax: 26vh}
-        .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMax: 18vh}
-        .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMax: 12vh}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMax: 64vw}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeOffsetMax: 52vw}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMax: 36vw}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMax: 24vw}
 
-        .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMin: 10vh}
-        .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeOffsetMin:  8vh}
-        .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMin:  6vh}
-        .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMin:  4vh}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMin: 10vw}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeOffsetMin:  8vw}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMin:  6vw}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMin:  4vw}
         }
 
     /** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /layoutValley */
