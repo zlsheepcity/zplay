@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <!-- .htmlseed 24.1.25 made with love ~ ʕ⊙ᴥ⊙ʔ ~ -->
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> Tab data -->
+    <title>ranges II</title>
+    <meta name="theme-color" content="#314159">
+    <link rel="icon" type="image/png" href="app/icon512.png">
+    <meta name="description"  content="htmlseed">
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> CSS preset 2024 -->
+    <style>
+        body {
+          --color--PaperTone: hsl( 37, 55%, 85%);
+          --color--PaperDark: hsl(  0,  0%,  8%);
+          --color--PaperRose: hsl(359, 59%, 43%);
+
+          --background-color: var(--color--PaperTone);
+          --foreground-color: var(--color--PaperDark);
+              --accent-color: var(--color--PaperRose);
+        }
+
+        body {
+            background-color: var(--background-color);
+            margin: 0; color: var(--foreground-color);
+            font-family: monospace; overflow-y:scroll;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        img, video, svg {
+            margin: 0;
+            border: 0;
+            max-width: 100%;
+            display:  block;
+        }
+
+        center {
+            display: grid;
+            place-items: center;
+        }
+    </style>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> CSS custom -->
+    <style>
+        [display-source] {
+            display: block;
+            padding: 0 1em 1em 0;
+            margin:  0 0   1em 0;
+            max-width: max-content;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        [contenteditable] {
+          --color: var(--accent-color);
+            color: var(--color);
+            border-left: 1em solid var(--color);
+        }
+    </style>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> CSS stylesheet -->
+    <link
+        href="app/custom.css"
+        type="text/css" rel="stylesheet" media="all">
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+
+</head>
+<body class="">
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> SECTION -->
+    <style display-source contenteditable>
+        body {
+          --background-color: white;
+          --foreground-color: var(--color--PaperDark);
+              --accent-color: var(--color--PaperRose);
+        }
+    </style>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> DEMO -->
+    <article class="layoutParallaxValley">
+        <header section>header</header>
+        <section valley>valley</section>
+        <footer section>footer</footer>
+    </article>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> CSS -->
+    <style>
+    /** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ParallaxValley */
+    /** 24.1.27 **/
+
+        .layoutParallaxValley,
+        .layoutParallaxValley.defaultSettings {
+          --width--total:  100vw;
+          --height--total:  70vh;
+            background: lightskyblue;
+        }
+
+        .layoutParallaxValley {
+            height:    var(--height--total);
+            width:     var(--width--total);
+            max-width: 100%;
+            overflow:  hidden;
+            position:  relative;
+        }
+        .layoutParallaxValley>header {
+            left:0; right:0; top:0;
+            /*RenderFix2024*/top:-1px;
+            position: absolute;
+        }
+        .layoutParallaxValley>footer {
+            left:0; right:0; bottom:0;
+            /*RenderFix2024*/bottom:-1px;
+            position: absolute;
+        }
+
+
+        .layoutParallaxValley >header,
+        .layoutParallaxValley >footer,
+        .layoutParallaxValley .valley {
+            height:           var(--rangeHeight, 0);
+            background-image: var(--rangeImage);
+            background-size:  var(--width--total) var(--rangeHeight);
+            background-color: transparent;
+            display: grid; place-items: center;
+        }
+
+        .layoutParallaxValley >header {--rangeHeight: 12vw}
+        .layoutParallaxValley >footer {--rangeHeight: 12vw}
+
+        .layoutParallaxValley >header {--rangeImage: url(art/moutRangeFin1.svg)}
+        .layoutParallaxValley >footer {--rangeImage: url(art/moutRangeFin1.svg)}
+
+        .layoutParallaxValley>header {transform:scale(-1);}
+
+    /** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /ParallaxValley */
+    </style>
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> BLOB -->
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ -->
+    <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> END -->
+</body>
+</html>
