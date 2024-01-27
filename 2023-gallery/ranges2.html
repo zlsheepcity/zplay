@@ -82,22 +82,53 @@
         }
     </style>
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> DEMO -->
-    <article class="layoutParallaxValley">
+    <article class="layoutParallaxValley defaultDemo">
         <header section>header</header>
-        <section valley>valley</section>
+        <section sky-header></section>
+        <section sky-layers><p/><p/><p/><p/></section>
+        <section sea-layers><p/><p/><p/><p/></section>
+        <section sea-footer></section>
+        <section class="xgroup x1"><p/><p/><p/><p/></section>
+        <section class="xgroup x2"><p/><p/><p/><p/></section>
         <footer section>footer</footer>
     </article>
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> CSS -->
-    <style>
+    <style display-source contenteditable>
     /** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ParallaxValley */
     /** 24.1.27 **/
 
         .layoutParallaxValley,
         .layoutParallaxValley.defaultSettings {
           --width--total:  100vw;
-          --height--total:  70vh;
+          --height--total:  80vh;
             background: lightskyblue;
         }
+
+        .layoutParallaxValley.defaultDemo >header  {--rangeHeight: 12vw}
+        .layoutParallaxValley.defaultDemo >footer  {--rangeHeight: 12vw}
+        .layoutParallaxValley.defaultDemo .xgroup>*{--rangeHeight: 10vw}
+
+        .layoutParallaxValley.defaultDemo .xgroup>*{--rangeOffset: var(--o);}
+        .layoutParallaxValley.defaultDemo .x1>:nth-child(1) {--o: calc(0.75 * var(--rangeHeight) * 3);}
+        .layoutParallaxValley.defaultDemo .x1>:nth-child(2) {--o: calc(0.75 * var(--rangeHeight) * 1);}
+        .layoutParallaxValley.defaultDemo .x1>:nth-child(3) {--o: calc(-0.75 * var(--rangeHeight) * 1);}
+        .layoutParallaxValley.defaultDemo .x1>:nth-child(4) {--o: calc(-0.75 * var(--rangeHeight) * 3);}
+        .layoutParallaxValley.defaultDemo .x2>:nth-child(1) {--o: calc(-0.75 * var(--rangeHeight) * 1);}
+        .layoutParallaxValley.defaultDemo .x2>:nth-child(2) {--o: calc(-0.75 * var(--rangeHeight) * 2);}
+        .layoutParallaxValley.defaultDemo .x2>:nth-child(3) {--o: calc(-0.75 * var(--rangeHeight) * 3);}
+        .layoutParallaxValley.defaultDemo .x2>:nth-child(4) {--o: calc(-0.75 * var(--rangeHeight) * 4);}
+
+        .layoutParallaxValley.defaultDemo >header  {--rangeImage: url(art/moutRangeFin1.svg);}
+        .layoutParallaxValley.defaultDemo .xgroup>*{--rangeImage: var(--i);}
+        .layoutParallaxValley.defaultDemo .x1>:nth-child(1) {--i: url(art/moutRange1.svg);}
+        .layoutParallaxValley.defaultDemo .x1>:nth-child(2) {--i: url(art/moutRange2.svg);}
+        .layoutParallaxValley.defaultDemo .x1>:nth-child(3) {--i: url(art/moutRange3.svg);}
+        .layoutParallaxValley.defaultDemo .x1>:nth-child(4) {--i: url(art/moutRange4.svg);}
+        .layoutParallaxValley.defaultDemo .x2>:nth-child(1) {--i: url(art/moutRange1.svg);}
+        .layoutParallaxValley.defaultDemo .x2>:nth-child(2) {--i: url(art/moutRange2.svg);}
+        .layoutParallaxValley.defaultDemo .x2>:nth-child(3) {--i: url(art/moutRange3.svg);}
+        .layoutParallaxValley.defaultDemo .x2>:nth-child(4) {--i: url(art/moutRange4.svg);}
+        .layoutParallaxValley.defaultDemo >footer  {--rangeImage: url(art/moutRangeFin1.svg);}
 
         .layoutParallaxValley {
             height:    var(--height--total);
@@ -117,24 +148,50 @@
             position: absolute;
         }
 
-
+        .layoutParallaxValley >header,
+        .layoutParallaxValley >footer {
+            z-index: 1;
+        }
         .layoutParallaxValley >header,
         .layoutParallaxValley >footer,
-        .layoutParallaxValley .valley {
+        .layoutParallaxValley .xgroup>* {
             height:           var(--rangeHeight, 0);
             background-image: var(--rangeImage);
             background-size:  var(--width--total) var(--rangeHeight);
             background-color: transparent;
-            display: grid; place-items: center;
+            display:     grid;
+            place-items: center;
+            margin:      0;
+            padding:     0;
+            transform: scale(var(--transform-scale, 1));
         }
 
-        .layoutParallaxValley >header {--rangeHeight: 12vw}
-        .layoutParallaxValley >footer {--rangeHeight: 12vw}
+        .layoutParallaxValley .xgroup>* {
+            display:  block;
+            position: relative;
+            transform: translateY(var(--rangeOffset)) scale(var(--transform-scale, 1));
+        }
+        .layoutParallaxValley .xgroup.x1 >*:after {
+            content: '';
+            left:0; right:0; top:100%;
+            /*RenderFix2024*/top:calc(100% - 1px);
+            position: absolute;
+            height:   var(--height--total);
+            background-color: red;
+            opacity: 0.5;
+        }
+        .layoutParallaxValley .xgroup.x2 >*:after {
+            content: '';
+            left:0; right:0; top:100%;
+            /*RenderFix2024*/top:calc(100% - 1px);
+            position: absolute;
+            height:   var(--height--total);
+            background-color: red;
+            opacity: 0.5;
+        }
 
-        .layoutParallaxValley >header {--rangeImage: url(art/moutRangeFin1.svg)}
-        .layoutParallaxValley >footer {--rangeImage: url(art/moutRangeFin1.svg)}
-
-        .layoutParallaxValley>header {transform:scale(-1);}
+        .layoutParallaxValley.defaultDemo .xgroup.x1 >*,
+        .layoutParallaxValley>header {--transform-scale: -1;}
 
     /** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ /ParallaxValley */
     </style>
