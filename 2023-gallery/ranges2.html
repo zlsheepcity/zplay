@@ -97,7 +97,7 @@
         .layoutValley,
         .layoutValley.defaultSettings {
           --width--total:  100vw;
-          --height--total:  92vh;
+          --height--total: 100vh;
             background: lightskyblue;
         }
 
@@ -207,10 +207,16 @@
         .layoutValley.defaultDemo [sea-layers]>* {--rangeHeight:10vw}
         .layoutValley.defaultDemo [sea-footer]   {--rangeHeight:12vw}
 
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMax: 32vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMax: 20vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMax: 14vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMax: 8vw}
+/*
         .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMax: 24vw}
         .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMax: 18vw}
         .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMax: 12vw}
         .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMax:  6vw}
+*/
 
         .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMin:  5vw}
         .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMin:  4vw}
@@ -222,10 +228,16 @@
         .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMax: 18vw}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMax: 12vw}
 
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMin:  8vw}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeOffsetMin:  6vw}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMin:  5vw}
+        .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMin:  3vw}
+/*
         .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMin: 10vw}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeOffsetMin:  8vw}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMin:  6vw}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMin:  4vw}
+*/
 
         .layoutValley.defaultDemo [sky-header] {--rangeImage: url(art/moutCloud1.svg);}
         .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeImage: url(art/moutCloudC1.svg);}
@@ -238,21 +250,23 @@
         .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeImage: url(art/moutRange4.svg);}
         .layoutValley.defaultDemo [sea-footer] {--rangeImage: url(art/moutRangeFin1.svg);}
 
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeColor: hsl(212, 25%, 45%);}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeColor: hsl(212, 30%, 40%);}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeColor: hsl(212, 35%, 35%);}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeColor: hsl(212, 40%, 30%);}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeColor: transparent;}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeColor: hsl(212, 21%, 70%);}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeColor: hsl(212, 17%, 80%);}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeColor: hsl(212, 12%, 90%);}
 
         .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeColor: hsl(212, 25%, 45%);}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeColor: hsl(212, 30%, 40%);}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeColor: hsl(212, 35%, 35%);}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeColor: hsl(212, 40%, 30%);}
 
+    /** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ defaultDemo mobile media */
+
         @media all and (max-width:1080px) {
-            .layoutValley [sky-header],
-            .layoutValley [sky-layers]>*,
-            .layoutValley [sea-layers]>*,
-            .layoutValley [sea-footer] {
+            .layoutValley [sky-header]:before,
+            .layoutValley [sky-layers]>*:before,
+            .layoutValley [sea-layers]>*:before,
+            .layoutValley [sea-footer]:before {
                 background-size:  200vw var(--rangeHeight);
                 background-position: 50% 0;
             }
@@ -337,7 +351,7 @@
                 const wayEnd = vt + vh;
                 const wayDistance = wh + vh || 1;
                 const wayDP = (wt - wayStart) / wayDistance;
-                const rangeScroll = wayDP > 0 ? wayDP : wayDP < 1 ? 0:1;
+                const rangeScroll = wayDP<0 ? 0 : wayDP>1 ? 1 : wayDP;
                 DOM.area.style.setProperty('--rangeScroll', `${rangeScroll}`);
             }
             const eventOnScroll = new EventDebouncer(setRatioVar);
