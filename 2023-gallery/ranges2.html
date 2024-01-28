@@ -84,10 +84,10 @@
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> DEMO 2 -->
     <div style="height:120vh;">scroll down</div>
     <article class="layoutValley defaultDemo" id="ObservableRangearea">
-        <section sky-header>header</section>
+        <section sky-header></section>
         <section sky-layers><p/><p/><p/><p/></section>
         <section sea-layers><p/><p/><p/><p/></section>
-        <section sea-footer>footer</section>
+        <section sea-footer></section>
     </article>
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> CSS -->
     <style display-source contenteditable>
@@ -101,8 +101,7 @@
             background: lightskyblue;
         }
 
-        /* layout */
-
+    /** Main container */
         .layoutValley {
             height:    var(--height--total);
             width:     var(--width--total);
@@ -110,6 +109,8 @@
             overflow:  hidden;
             position:  relative;
         }
+
+    /** Layer position */
         .layoutValley [sky-header],
         .layoutValley [sky-layers]>*,
         .layoutValley [sea-layers]>*,
@@ -123,52 +124,81 @@
         .layoutValley [sea-layers]>* {bottom:0}
         .layoutValley [sea-footer]   {bottom:-1px}
 
-        /* layer picture box */
-
+    /** Layer geometry */
         .layoutValley [sky-header],
         .layoutValley [sky-layers]>*,
         .layoutValley [sea-layers]>*,
         .layoutValley [sea-footer] {
             height: var(--rangeHeight, 0);
             width:  100%;
-            background-image: var(--rangeImage);
-            background-size:  var(--width--total) var(--rangeHeight);
-            background-color: transparent;
             display:     grid;
             place-items: center;
             margin:      0;
             padding:     0;
         }
 
-        /* layer extended background */
-
-        .layoutValley [sky-layers]>*:after,
-        .layoutValley [sea-layers]>*:after {
+    /** Element for layer background image */
+        .layoutValley [sky-header]:before,
+        .layoutValley [sky-layers]>*:before,
+        .layoutValley [sea-layers]>*:before,
+        .layoutValley [sea-footer]:before {
             content:  '';
-            height:   var(--height--total);
+            display:  block;
             position: absolute;
             left:  0;
             right: 0;
-            background-color: var(--rangeColor, transparent);
+            top:   0;
+            height: 100%;
+            pointer-events: none; /* default */
+        }
+
+    /** Element for layer extended underground */
+        .layoutValley [sky-layers]>*:after,
+        .layoutValley [sea-layers]>*:after {
+            content:  '';
+            display:  block;
+            position: absolute;
+            left:  0;
+            right: 0;
+            height: var(--height--total);
+            pointer-events: none; /* default */
         }
         .layoutValley [sky-layers]>*:after {bottom: 100%; bottom: calc(100% - 1px);}
         .layoutValley [sea-layers]>*:after {top:    100%; top:    calc(100% - 1px);}
 
-        /* layer scroll offset */
+    /** Layer images */
+        .layoutValley [sky-header]:before,
+        .layoutValley [sky-layers]>*:before,
+        .layoutValley [sea-layers]>*:before,
+        .layoutValley [sea-footer]:before {
+            background-image: var(--rangeImage);
+            background-size:  var(--width--total) var(--rangeHeight);
+            background-color: transparent;
+            pointer-events: all; /* override default */
+        }
+        .layoutValley [sky-layers]>*:after,
+        .layoutValley [sea-layers]>*:after {
+            background-color: var(--rangeColor, transparent);
+            pointer-events: all; /* override default */
+        }
 
-        .layoutValley [sky-layers]>* {--rangeDirection: -1;}
-        .layoutValley [sea-layers]>* {--rangeDirection:  1;}
-
+     /** Offset formula */
         .layoutValley [sky-layers]>* ,
         .layoutValley [sea-layers]>* {
-          --L: calc(var(--rangeOffsetRun,0) - (var(--rangeOffsetRun,0) - var(--rangeOffsetEnd,0)) * var(--rangeScroll));
-          --Y: calc(-1 * var(--rangeDirection, 1) * var(--L, 0));
-            transform: translateY(var(--Y));
+          --a: var(--rangeOffsetStartPoint, 0);
+          --b: var(--rangeOffsetFinishPoint, 0);
+          --s: var(--rangeScroll, 0); /* covered distance modifyer [0..1] */
+          --D: var(--rangeDirection, 1);
+          --offset: calc(var(--a) - var(--s) * (var(--a) - var(--b)));
+          --result: calc(var(--D) * var(--offset));
+            transform: translateY(var(--result));
         }
-        .layoutValley [sky-layers]>* {--rangeOffsetRun: var(--rangeOffsetMin);}
-        .layoutValley [sky-layers]>* {--rangeOffsetEnd: var(--rangeOffsetMax);}
-        .layoutValley [sea-layers]>* {--rangeOffsetRun: var(--rangeOffsetMax);}
-        .layoutValley [sea-layers]>* {--rangeOffsetEnd: var(--rangeOffsetMin);}
+        .layoutValley [sky-layers]>* {--rangeDirection:  1;}
+        .layoutValley [sea-layers]>* {--rangeDirection: -1;}
+        .layoutValley [sky-layers]>* {--rangeOffsetStartPoint:  var(--rangeOffsetMin);}
+        .layoutValley [sky-layers]>* {--rangeOffsetFinishPoint: var(--rangeOffsetMax);}
+        .layoutValley [sea-layers]>* {--rangeOffsetStartPoint:  var(--rangeOffsetMax);}
+        .layoutValley [sea-layers]>* {--rangeOffsetFinishPoint: var(--rangeOffsetMin);}
 
     /** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ defaultDemo */
 
@@ -182,9 +212,9 @@
         .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMax: 12vw}
         .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMax:  6vw}
 
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMin:  8vw}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMin:  6vw}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMin:  4vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeOffsetMin:  5vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeOffsetMin:  4vw}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeOffsetMin:  3vw}
         .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeOffsetMin:  2vw}
 
         .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeOffsetMax: 32vw}
@@ -227,7 +257,7 @@
                 background-position: 50% 0;
             }
 
-        .layoutValley.defaultDemo [sky-header]   {--rangeHeight:24vw}
+        .layoutValley.defaultDemo [sky-header]   {--rangeHeight:20vw}
         .layoutValley.defaultDemo [sky-layers]>* {--rangeHeight:20vw}
         .layoutValley.defaultDemo [sea-layers]>* {--rangeHeight:20vw}
         .layoutValley.defaultDemo [sea-footer]   {--rangeHeight:24vw}
