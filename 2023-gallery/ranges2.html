@@ -82,7 +82,7 @@
         }
     </style>
     <!-- ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~>> DEMO 2 -->
-    <div style="height:120vh;"></div>
+    <div style="height:120vh;">scroll down</div>
     <article class="layoutValley defaultDemo" id="ObservableRangearea">
         <section sky-header>header</section>
         <section sky-layers><p/><p/><p/><p/></section>
@@ -149,14 +149,13 @@
             position: absolute;
             left:  0;
             right: 0;
-            top: 100%;
-            top: calc(100% - 1px);
             background-color: var(--rangeColor, transparent);
         }
+        .layoutValley [sky-layers]>*:after {bottom: 100%; bottom: calc(100% - 1px);}
+        .layoutValley [sea-layers]>*:after {top:    100%; top:    calc(100% - 1px);}
 
         /* layer scroll offset */
 
-        .layoutValley [sky-header]   {--rangeDirection: -1; transform:scaleY(var(--rangeDirection));}
         .layoutValley [sky-layers]>* {--rangeDirection: -1;}
         .layoutValley [sea-layers]>* {--rangeDirection:  1;}
 
@@ -164,7 +163,7 @@
         .layoutValley [sea-layers]>* {
           --L: calc(var(--rangeOffsetRun,0) - (var(--rangeOffsetRun,0) - var(--rangeOffsetEnd,0)) * var(--rangeScroll));
           --Y: calc(-1 * var(--rangeDirection, 1) * var(--L, 0));
-            transform: translateY(var(--Y)) scaleY(var(--rangeDirection));
+            transform: translateY(var(--Y));
         }
         .layoutValley [sky-layers]>* {--rangeOffsetRun: var(--rangeOffsetMin);}
         .layoutValley [sky-layers]>* {--rangeOffsetEnd: var(--rangeOffsetMax);}
@@ -173,7 +172,7 @@
 
     /** ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ defaultDemo */
 
-        .layoutValley.defaultDemo [sky-header]   {--rangeHeight:12vw}
+        .layoutValley.defaultDemo [sky-header]   {--rangeHeight:10vw}
         .layoutValley.defaultDemo [sky-layers]>* {--rangeHeight:10vw}
         .layoutValley.defaultDemo [sea-layers]>* {--rangeHeight:10vw}
         .layoutValley.defaultDemo [sea-footer]   {--rangeHeight:12vw}
@@ -198,11 +197,11 @@
         .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeOffsetMin:  6vw}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(4) {--rangeOffsetMin:  4vw}
 
-        .layoutValley.defaultDemo [sky-header] {--rangeImage: url(art/moutRangeFin1.svg);}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeImage: url(art/moutRange1.svg);}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeImage: url(art/moutRange2.svg);}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeImage: url(art/moutRange3.svg);}
-        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeImage: url(art/moutRange4.svg);}
+        .layoutValley.defaultDemo [sky-header] {--rangeImage: url(art/moutCloud1.svg);}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(1) {--rangeImage: url(art/moutCloudC1.svg);}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(2) {--rangeImage: url(art/moutCloud4.svg);}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(3) {--rangeImage: url(art/moutCloud3.svg);}
+        .layoutValley.defaultDemo [sky-layers]>:nth-child(4) {--rangeImage: url(art/moutCloud2.svg);}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(1) {--rangeImage: url(art/moutRange1.svg);}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(2) {--rangeImage: url(art/moutRange2.svg);}
         .layoutValley.defaultDemo [sea-layers]>:nth-child(3) {--rangeImage: url(art/moutRange3.svg);}
