@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GEO core</title>
+    <style>
+        [display-source] {
+            display: block;
+            padding: 0 1em 1em 0;
+            margin:  0 0   1em 0;
+            max-width: max-content;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+<script display-source>
+
+    console.group('Welcome');
+    console.log('JS started');
+    console.groupEnd();
+
+    const GEOseed = function Substance(dna) {
+        const DNA = Object.assign(this,dna);
+        const API = {};
+
+        API.makeLand = function(dna) {
+            return {
+                type: 'Land',
+                name: 'Landname',
+                ...dna
+            };
+        };
+
+        Object.assign(DNA,API);
+    };
+
+    console.group('Substance test');
+    const GEOx = new GEOseed({exist:true});
+    console.log('GEOx',GEOx);
+    console.log('Land',GEOx.makeLand());
+    console.groupEnd();
+
+</script>
+</body>
+</html>
