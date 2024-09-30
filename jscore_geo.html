@@ -21,7 +21,34 @@
     console.group('Welcome');
     console.log('JS started');
     console.groupEnd();
-    
+
+    const ModelEssence = function Essence(...dna) {
+        const DNA = Object.assign(this,...dna);
+        DNA.Merge = (...rna) => Object.assign(DNA,...rna);
+    };
+    const LandEssence = function TheLand(...dna){
+        const essence = new ModelEssence(...dna);
+        const DNA = Object.assign(this, essence);
+
+        DNA.makeLand = dna => {
+            
+        };
+    };
+    const WorldEssence = function World(inject) {
+        const dna = {
+            name: 'WorldEssence',
+            land: {},
+            LandEssense,
+        };
+        const DNA = Object.assign(this,dna,inject);
+
+        DNA.inject = (...rna) => Object.assign(DNA,...rna);
+
+      //DNA.
+
+        //DNA.GEO = new GEOLibrary(DNA.geo);
+    };
+
     const GEOMaster = function GEOMasterFactory(dna) {
         const config = {
             name: 'GEOMasterFactory',
@@ -46,7 +73,7 @@
     };
 
     console.group('Substance test');
-    const GEOx = new GEOseed({exist:true});
+    const GEOx = new GEOModel({exist:true});
     console.log('GEOx',GEOx);
     console.log('Land',GEOx.makeLand());
     console.groupEnd();
